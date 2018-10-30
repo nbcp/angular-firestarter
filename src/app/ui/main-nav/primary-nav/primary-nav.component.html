@@ -1,0 +1,24 @@
+  <span class="main">
+    <span id="title"> 
+      <a mat-button routerLink="/">
+        <mat-icon class="example-icon">school</mat-icon>
+        LeaderBoard
+      </a> 
+    </span>
+    <span class="toolbar-items">
+      <span *ngFor="let item of toolbarItems">
+        <a mat-button routerLink="{{ item.href }}">
+          <img src="{{ item.img }}" alt="">{{ item.name }}
+        </a>
+      </span>
+    </span>
+  </span>
+    
+  <span class="toolbar-items-right">
+    <a mat-button routerLink="">
+      <img src="assets/icons/notification.png" alt="">
+    </a>
+    <a mat-button routerLink="">
+      <img src="assets/icons/user-silhouette.png" alt="">
+    </a>
+  </span>

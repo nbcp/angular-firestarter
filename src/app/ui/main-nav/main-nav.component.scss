@@ -5,3 +5,21 @@
 .example-spacer {
   flex: 1 1 auto;
 }
+
+mat-toolbar {
+    z-index: 100 !important;
+    display: flex;
+    z-index: 100 !important;
+
+    mat-toolbar-row {
+        justify-content: space-between;
+    }
+}
+
+#profile-toolbar {
+    height: 192px;
+
+    
+}
+
+

@@ -1,18 +1,15 @@
 
 <mat-toolbar color="primary">
-  <mat-toolbar-row>
-    <a mat-button routerLink="/">
-      <mat-icon class="example-icon">school</mat-icon>
-      LeaderBoard
-    </a>
-    <span class="example-spacer"></span>
-    <a mat-button routerLink="/notes">
-      <mat-icon class="example-icon">note</mat-icon>
-      Notes
-    </a>
-    <a mat-button routerLink="/uploads">
-      <mat-icon class="example-icon">attach_file</mat-icon>
-      File Upload
-    </a>
+  <mat-toolbar-row 
+    primary-nav 
+    [items]="toolbarItems" 
+    class="mat-elevation-z6"
+    id="primary-toolbar">
   </mat-toolbar-row>
+
+  <mat-toolbar-row 
+    profile-nav
+    id="profile-toolbar">
+  </mat-toolbar-row>
+
 </mat-toolbar>

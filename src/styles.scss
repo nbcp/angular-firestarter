@@ -67,3 +67,14 @@ body {
     align-items: stretch;
     height: 100vh;
 }
+
+// Temporary Images
+.example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+}
+
+.example-training-image {
+    background-image: url('assets/images/angularfirebase.png');
+    background-size: cover;
+}

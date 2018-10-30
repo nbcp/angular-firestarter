@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToolbarItem } from './toolbar-item.model';
 
 @Component({
   selector: 'main-nav',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainNavComponent {
 
+  toolbarItems : ToolbarItem[];
+  
   show = false;
 
-  constructor() { }
+  constructor() {
+    this.toolbarItems = [
+      new ToolbarItem("Home", "/", ""),
+      new ToolbarItem("Tasks", "/", ""),
+      new ToolbarItem("Leaderboard", "/", ""),
+      new ToolbarItem("Party", "/", "")
+    ];
+   }
 
   toggleCollapse() {
     this.show = !this.show;

@@ -6,7 +6,10 @@ import {
   MatButtonModule,
   MatCardModule,
   MatIconModule,
-  MatToolbarModule
+  MatToolbarModule,
+  MatProgressBarModule,
+  MatGridListModule,
+  MatListModule
 } from '@angular/material';
 
 import { UserLoginComponent } from './user-login/user-login.component';
@@ -17,6 +20,13 @@ import { NotificationMessageComponent } from './notification-message/notificatio
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserFormComponent } from './user-form/user-form.component';
 import { SsrPageComponent } from './ssr-page/ssr-page.component';
+import { PrimaryNavComponent } from './main-nav/primary-nav/primary-nav.component';
+import { ProfileNavComponent } from './main-nav/profile-nav/profile-nav.component';
+import { HomeLeaderboardComponent } from './home-page/leaderboard/leaderboard.component';
+import { HomeTasksComponent } from './home-page/tasks/tasks.component';
+import { HomePartyComponent } from './home-page/party/party.component';
+import { RewardsComponent } from './home-page/rewards/rewards.component';
+
 
 @NgModule({
   imports: [
@@ -27,6 +37,9 @@ import { SsrPageComponent } from './ssr-page/ssr-page.component';
     MatCardModule,
     MatIconModule,
     MatToolbarModule,
+    MatProgressBarModule,
+    MatGridListModule,
+    MatListModule
   ],
   declarations: [
     UserLoginComponent,
@@ -36,7 +49,13 @@ import { SsrPageComponent } from './ssr-page/ssr-page.component';
     NotificationMessageComponent,
     UserProfileComponent,
     UserFormComponent,
-    SsrPageComponent
+    SsrPageComponent,
+    PrimaryNavComponent,
+    ProfileNavComponent,
+    HomeLeaderboardComponent,
+    HomeTasksComponent,
+    HomePartyComponent,
+    RewardsComponent
   ],
   exports: [
     MainNavComponent,
