@@ -60,16 +60,13 @@ import { LeaderboardService } from './home-page/leaderboard.service';
     UserProfileComponent,
     UserFormComponent,
     SsrPageComponent,
-<<<<<<< HEAD
     FirestoreDatePipe,
-=======
     PrimaryNavComponent,
     ProfileNavComponent,
     HomeLeaderboardComponent,
     HomeTasksComponent,
     HomePartyComponent,
     RewardsComponent
->>>>>>> Homepage barebones
   ],
   exports: [
     MainNavComponent,
