@@ -1,3 +1,5 @@
+@import '~@angular/material/theming';
+
 .example-icon {
   padding-right: 5px;
 }
@@ -18,8 +20,6 @@ mat-toolbar {
 
 #profile-toolbar {
     height: 192px;
-
-    
 }
 
 

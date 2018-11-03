@@ -6,10 +6,11 @@ import { UserLoginComponent } from './ui/user-login/user-login.component';
 import { HomePageComponent } from './ui/home-page/home-page.component';
 import { TasksPageComponent } from './tasks/tasks-page.component';
 import { UploadPageComponent } from './uploads/upload-page/upload-page.component';
-
+import { TasksPageComponent } from './ui/tasks-page/tasks-page.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
+  { path: 'tasks', component: TasksPageComponent },
   { path: 'login', component: UserLoginComponent },
   { path: 'tasks', component: TasksPageComponent,  canActivate: [AuthGuard] },
 ];
