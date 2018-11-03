@@ -15,7 +15,7 @@ export class MainNavComponent {
   constructor() {
     this.toolbarItems = [
       new ToolbarItem("Home", "/", ""),
-      new ToolbarItem("Tasks", "/", ""),
+      new ToolbarItem("Tasks", "/tasks", ""),
       new ToolbarItem("Leaderboard", "/", ""),
       new ToolbarItem("Party", "/", "")
     ];

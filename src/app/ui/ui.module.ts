@@ -26,7 +26,7 @@ import { HomeLeaderboardComponent } from './home-page/leaderboard/leaderboard.co
 import { HomeTasksComponent } from './home-page/tasks/tasks.component';
 import { HomePartyComponent } from './home-page/party/party.component';
 import { RewardsComponent } from './home-page/rewards/rewards.component';
-
+import { TasksPageComponent } from './tasks-page/tasks-page.component';
 
 @NgModule({
   imports: [
@@ -55,7 +55,8 @@ import { RewardsComponent } from './home-page/rewards/rewards.component';
     HomeLeaderboardComponent,
     HomeTasksComponent,
     HomePartyComponent,
-    RewardsComponent
+    RewardsComponent,
+    TasksPageComponent
   ],
   exports: [
     MainNavComponent,
