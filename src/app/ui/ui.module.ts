@@ -10,7 +10,9 @@ import {
   MatListModule,
   MatProgressSpinnerModule,
   MatStepperModule,
-  MatToolbarModule
+  MatToolbarModule,
+  MatProgressBarModule,
+  MatGridListModule,
 } from '@angular/material';
 
 import { UserLoginComponent } from './user-login/user-login.component';
@@ -21,6 +23,13 @@ import { NotificationMessageComponent } from './notification-message/notificatio
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserFormComponent } from './user-form/user-form.component';
 import { SsrPageComponent } from './ssr-page/ssr-page.component';
+import { PrimaryNavComponent } from './main-nav/primary-nav/primary-nav.component';
+import { ProfileNavComponent } from './main-nav/profile-nav/profile-nav.component';
+import { HomeLeaderboardComponent } from './home-page/leaderboard/leaderboard.component';
+import { HomeTasksComponent } from './home-page/tasks/tasks.component';
+import { HomePartyComponent } from './home-page/party/party.component';
+import { RewardsComponent } from './home-page/rewards/rewards.component';
+
 
 import { FirestoreDatePipe } from './firestore-date.pipe';
 import { LeaderboardService } from './home-page/leaderboard.service';
@@ -38,6 +47,9 @@ import { LeaderboardService } from './home-page/leaderboard.service';
     MatProgressSpinnerModule,
     MatStepperModule,
     MatToolbarModule,
+    MatProgressBarModule,
+    MatGridListModule,
+    MatListModule
   ],
   declarations: [
     UserLoginComponent,
@@ -48,7 +60,16 @@ import { LeaderboardService } from './home-page/leaderboard.service';
     UserProfileComponent,
     UserFormComponent,
     SsrPageComponent,
+<<<<<<< HEAD
     FirestoreDatePipe,
+=======
+    PrimaryNavComponent,
+    ProfileNavComponent,
+    HomeLeaderboardComponent,
+    HomeTasksComponent,
+    HomePartyComponent,
+    RewardsComponent
+>>>>>>> Homepage barebones
   ],
   exports: [
     MainNavComponent,

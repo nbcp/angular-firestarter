@@ -1,0 +1,43 @@
+.profile-photo {
+    display: flex;
+    height: 80%;
+    border: 2px solid black;
+    margin-right: 2.5%;
+    align-items: center;
+    justify-content: center;
+
+    #display-photo {
+        height: 107px;
+        width: 160px;
+    }
+}
+
+.profile-details {
+    flex: 1 1 auto;
+    display: flex !important;
+    align-items: center !important;
+    flex-wrap: wrap;
+
+    .badge {
+        width: 32px;
+        margin-right: 10px;
+
+        img {
+            width: inherit;
+        }
+    }
+
+    .profile-data {
+        display: flex;
+        flex-direction: column;
+        width: 300px;
+
+        .character-name {
+            font-size: 14px;
+            line-height: 0.5;
+        }
+        .small-text {
+            font-size: 11px;
+        }
+    }
+}

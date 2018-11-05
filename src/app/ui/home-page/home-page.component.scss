@@ -8,5 +8,30 @@
 }
 
 mat-list-item {
-	border: 1px solid;
+    border: 1px solid;
+    
+    .basic-info-cols {
+        display:flex;
+        flex-direction: row;
+    }
+    
+    .basic-info-col {
+        display: flex !important;
+        flex-direction: column;
+        width: 50%;
+        margin: 10px;
+
+        mat-card {
+            margin-bottom: 5px;
+        }
+
+        h3 {
+            margin-left: 10px;
+            margin-right: auto;
+        }
+
+        .basic-info-content {
+            background: lightgray;
+        }
+    }
 }
