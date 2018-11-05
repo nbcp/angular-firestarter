@@ -7,12 +7,12 @@ import {
   MatCardModule,
   MatChipsModule,
   MatIconModule,
-  MatListModule,
   MatProgressSpinnerModule,
   MatStepperModule,
   MatToolbarModule,
   MatProgressBarModule,
   MatGridListModule,
+  MatListModule
 } from '@angular/material';
 
 import { UserLoginComponent } from './user-login/user-login.component';

@@ -15,6 +15,10 @@ mat-list-item {
         flex-direction: row;
     }
     
+.basic-info-cols {
+    display:flex;
+    flex-direction: row;
+
     .basic-info-col {
         display: flex !important;
         flex-direction: column;
@@ -34,4 +38,5 @@ mat-list-item {
             background: lightgray;
         }
     }
+}
 }
