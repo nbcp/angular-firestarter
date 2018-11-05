@@ -1,0 +1,31 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+
+    .page-header {
+        margin: 2% 2%;
+        display: flex;
+        justify-content: space-between;
+
+        button {
+            height: 100%;
+            margin: auto 0;
+        }
+
+        h1 {
+            margin: auto 0;
+        }
+    }
+
+    .tasks-board {
+        width: 100%;
+        display:flex;
+        flex-wrap: wrap;
+
+        mat-card {
+            width: 40%;
+            margin: 2% 2%;
+        }
+    }
+}
