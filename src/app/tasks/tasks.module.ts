@@ -17,7 +17,7 @@ import { TasksPageComponent } from './tasks-page.component';
 import { TaskListComponent } from './task-list/task-list.component';
 import { TasksService } from './tasks.service';
 import { UserTasksService } from './user-tasks.service';
-import { TeamsService } from './teams.service';
+import { TeamsModule } from '../teams/teams.module';
 
 @NgModule({
   imports: [
@@ -33,6 +33,8 @@ import { TeamsService } from './teams.service';
     MatIconModule,
     MatInputModule,
     ReactiveFormsModule,
+    // Developer Modules
+    TeamsModule
   ],
   declarations: [
     TaskListComponent,
@@ -40,7 +42,6 @@ import { TeamsService } from './teams.service';
   ],
   providers: [
     TasksService,
-    TeamsService,
     UserTasksService,
   ]
 })
