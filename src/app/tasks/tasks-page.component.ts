@@ -5,7 +5,7 @@ import { map, startWith } from 'rxjs/operators';
 
 import { AuthService } from '../core/auth.service';
 import { TasksService } from './tasks.service';
-import { TeamsService } from './teams.service';
+import { TeamsService } from '../teams/teams.service';
 import { UserTasksService } from './user-tasks.service';
 
 @Component({
