@@ -58,10 +58,6 @@ export class TeamsService {
     return this.getUser(uid).update({ team });
   }
 
-  /*getUsers(): Observable<User[]> {
-    return this.usersCollection.valueChanges();
-  }*/
-
   getTeamApplications(team: Team): Observable<TeamApplication[]> {
     const teamApplications: AngularFirestoreCollection<TeamApplication> = this.afs.collection(
       'team_applications', 
