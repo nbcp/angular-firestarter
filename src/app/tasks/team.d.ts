@@ -6,5 +6,5 @@ interface Team {
 }
 
 interface TeamApplication {
-  
+  teamid: string;
 }

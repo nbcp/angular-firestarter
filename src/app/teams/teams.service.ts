@@ -6,7 +6,6 @@ import {
 } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { forEach } from '@angular/router/src/utils/collection';
 
 @Injectable()
 export class TeamsService {
@@ -35,6 +34,10 @@ export class TeamsService {
     return this.afs.doc<Team>(`teams/${id}`);
   }
 
+  getTeamApplication(uid: string) {
+    return this.afs.doc<TeamApplication>(`team_applications/${uid}`);
+  }
+
   updateteam(id: string, data: any) {
     return this.getTeam(id).update(data);
   }
@@ -55,11 +58,45 @@ export class TeamsService {
     return this.getUser(uid).update({ team });
   }
 
-  getUsers(team: Team): Observable<User[]> {
+  /*getUsers(): Observable<User[]> {
     return this.usersCollection.valueChanges();
+  }*/
+
+  getTeamApplications(team: Team): Observable<TeamApplication[]> {
+    const teamApplications: AngularFirestoreCollection<TeamApplication> = this.afs.collection(
+      'team_applications', 
+      x => x.where("team_id", "==", team.id)
+      );
+
+    return teamApplications.valueChanges();
   }
 
-  getApplications(team: Team) {
-    
+  getTeamMembers(team: Team): Observable<User[]> {
+    const teamMembers:AngularFirestoreCollection<User> = this.afs.collection(
+      'users',
+      x => x.where("team/lead", "==", team.lead)
+    );
+
+    return teamMembers.valueChanges();
   }
+
+  addTeamMember(uid: string, team: Team) {
+    this.afs.collection('user').doc(uid).set(team);
+  }
+
+  acceptTeamApplication(uid: string, team: Team) {
+    this.deleteTeamApplication(uid);
+    this.addTeamMember(uid, team);
+  }
+
+  deleteTeamApplication(uid: string) {
+    return this.getTeamApplication(uid).delete();
+  }
+  
+  deleteTeamMember(user: User) {
+    delete(user.team);
+    // Remove team property from the document
+    this.afs.collection('user').doc(user.uid).update(user);
+  }
+
 }
