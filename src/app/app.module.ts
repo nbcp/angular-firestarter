@@ -34,6 +34,7 @@ import { AngularFireFunctionsModule, FunctionsRegionToken } from '@angular/fire/
 import { MsalModule } from '@azure/msal-angular';
 
 import { functions } from 'firebase';
+import { TeamsModule } from './teams/teams.module';
 
 // IMPORTANT
 // Add your own project credentials to environments/*.ts
@@ -60,6 +61,7 @@ import { functions } from 'firebase';
     MsalModule.forRoot({ clientID: '9fc78166-b1bb-4cc6-bb92-a2425705410a' }),
     NotesModule,
     TasksModule,
+    TeamsModule,
     UiModule,
     UploadsModule,
     ServiceWorkerModule.register('/ngsw-worker.js', {

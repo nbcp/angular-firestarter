@@ -36,6 +36,11 @@ service cloud.firestore {
       allow write: if false;
     }
 
+    match /team {
+      allow read: if isSignedIn();
+      allow write: if canUpdateScore();
+    }
+
     /// Functions ///
 
     function existingData() {

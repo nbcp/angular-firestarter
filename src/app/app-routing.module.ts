@@ -8,6 +8,7 @@ import { UserProfileComponent } from './ui/user-profile/user-profile.component';
 import { HomePageComponent } from './ui/home-page/home-page.component';
 import { TasksPageComponent } from './tasks/tasks-page.component';
 import { UploadPageComponent } from './uploads/upload-page/upload-page.component';
+import { TeamPageComponent } from './teams/team/team.component';
 
 
 const routes: Routes = [
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'login', component: UserLoginComponent },
   { path: 'profile', component: UserProfileComponent, canActivate: [AuthGuard] },
   { path: 'tasks', component: TasksPageComponent, canActivate: [AuthGuard] },
+  { path: 'team', component: TeamPageComponent, canActivate: [AuthGuard] },
   { path: 'admin', component: AdminPageComponent, canActivate: [AuthGuard] },
 ];
 
