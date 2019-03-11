@@ -13,6 +13,7 @@ import { TeamsService } from 'src/app/teams/teams.service';
 import { environment } from 'src/environments/environment';
 import { AddQuestDialogComponent } from '../dialog/add-quest-dialog/add-quest-dialog.component';
 import { PlayerQuestService } from '../player-quest/player-quest.service';
+import { PlayerPointsService } from 'src/app/players/playerpoints.service';
 
 @Component({
   selector: 'user-profile',
@@ -23,6 +24,8 @@ export class UserProfileComponent implements OnInit {
 
   debugMode: boolean;
   otherUser$: Observable<User|UserError>;
+  ownExp: number;
+  playerExp: number;
 
   constructor(public auth: AuthService,
     private userService: UserService,
@@ -32,7 +35,8 @@ export class UserProfileComponent implements OnInit {
     private seasonService: SeasonService,
     private emailService: EmailService,
     private notifyService: NotifyService,
-    private teamsService: TeamsService) {}
+    private teamsService: TeamsService,
+    private playerPointsService: PlayerPointsService) {}
 
   ngOnInit() {
     // debug mode true if locally run
@@ -43,12 +47,15 @@ export class UserProfileComponent implements OnInit {
       switchMap((params) => {
         const playerId = params['uid'] as string;
         if (playerId) {
+          this.getTotalExp(playerId);
           return this.getPlayerInfo(playerId);
         }
 
         return of(null);
       })
     );
+
+    this.getTotalExp();
   }
 
   private getPlayerInfo(playerId: string): Observable<User|UserError> {
@@ -84,6 +91,18 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
+  private getOwnExp(uid: string) {
+    this.playerPointsService.getTotalExp(uid).subscribe(exp => {
+      this.ownExp = exp;
+    });
+  }
+
+  private getPlayerExp(uid: string) {
+    this.playerPointsService.getTotalExp(uid).subscribe(exp => {
+      this.playerExp = exp;
+    });
+  }
+
   addQuest(user: User, lead: User) {
     const assignQuestDialog = this.dialog.open(AddQuestDialogComponent, {
       data: { user, lead }
@@ -109,6 +128,17 @@ export class UserProfileComponent implements OnInit {
         console.log(err);
         this.notifyService.update('Assign quest failed!', 'error');
       });
+    });
+  }
+
+  getTotalExp(userId?: string) {
+    if (userId) {
+      this.getPlayerExp(userId);
+
+      return;
+    }
+    this.auth.user$.subscribe(user => {
+      this.getOwnExp(user.uid);
     });
   }
 }
