@@ -22,6 +22,8 @@ import { PlayerPointsService } from 'src/app/players/playerpoints.service';
 })
 export class UserProfileComponent implements OnInit {
 
+  PLACEHOLDER_SEASON = 'CJbPw8e8U9JkpIWlDnnl';
+
   debugMode: boolean;
   otherUser$: Observable<User|UserError>;
   ownExp: number;
@@ -47,28 +49,27 @@ export class UserProfileComponent implements OnInit {
       switchMap((params) => {
         const playerId = params['uid'] as string;
         if (playerId) {
-          this.getTotalExp(playerId);
           return this.getPlayerInfo(playerId);
         }
 
         return of(null);
       })
     );
-
-    this.getTotalExp();
   }
 
   private getPlayerInfo(playerId: string): Observable<User|UserError> {
     const error = 'Sorry, You are not allowed to view this user\'s profile';
     const user$ = this.userService.getUser(playerId);
     const membership$ = this.teamsService.getMembership(playerId);
+    const totalExp$ = this.playerPointsService.getTotalExp(playerId);
+    const seasonExp$ = this.playerPointsService.getSeasonExp(playerId, this.PLACEHOLDER_SEASON); // till we get seasonService handled
 
-    return combineLatest(user$, membership$).pipe(
-      map(([user, membership]) => ({ ...user, membership })),
-      catchError((err) => {
-        console.log(err);
-        return of({ error });
-      })
+    return combineLatest(user$, membership$, totalExp$, seasonExp$).pipe(
+      map(([user, membership, totalExp, seasonExp]) => ({ ...user, membership, totalExp, seasonExp })),
+        catchError((err) => {
+          console.log(err);
+          return of({ error });
+        })
     );
   }
 
@@ -88,18 +89,6 @@ export class UserProfileComponent implements OnInit {
     ).subscribe((res) => {
       console.log(res);
       this.notifyService.update('Assign quest successful!', 'success');
-    });
-  }
-
-  private getOwnExp(uid: string) {
-    this.playerPointsService.getTotalExp(uid).subscribe(exp => {
-      this.ownExp = exp;
-    });
-  }
-
-  private getPlayerExp(uid: string) {
-    this.playerPointsService.getTotalExp(uid).subscribe(exp => {
-      this.playerExp = exp;
     });
   }
 
@@ -128,17 +117,6 @@ export class UserProfileComponent implements OnInit {
         console.log(err);
         this.notifyService.update('Assign quest failed!', 'error');
       });
-    });
-  }
-
-  getTotalExp(userId?: string) {
-    if (userId) {
-      this.getPlayerExp(userId);
-
-      return;
-    }
-    this.auth.user$.subscribe(user => {
-      this.getOwnExp(user.uid);
     });
   }
 }
