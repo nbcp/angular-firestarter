@@ -54,8 +54,6 @@ export class AuthService {
     const membership$ = this.teamsService.getMembership(uid);
     const totalExp$ = this.playerPointsService.getTotalExp(uid);
     const seasonExp$ = this.playerPointsService.getSeasonExp(uid, this.PLACEHOLDER_SEASON); // till we get seasonService handled
-    seasonExp$.subscribe(exp => console.log(exp));
-    totalExp$.subscribe(exp => console.log(exp));
 
     return combineLatest(user$, isAdmin$, membership$, totalExp$, seasonExp$).pipe(
       map(([user, isAdmin, membership, totalExp, seasonExp]) => ({

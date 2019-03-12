@@ -39,6 +39,7 @@ export class PlayerPointsService {
   getTotalExp(uid: string): Observable<number> {
     return this.getTotalPlayerPoints(uid).pipe(map((playerPoints) => {
       let totalPoints = 0;
+
       playerPoints.forEach(playerPoint => {
         totalPoints += playerPoint.totalPoints;
       });
