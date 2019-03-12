@@ -16,9 +16,12 @@ import { NotifyService } from './notify.service';
 import { AdminService } from './admin.service';
 import { UserService } from './user.service';
 import { TeamsService } from '../teams/teams.service';
+import { PlayerPointsService } from '../players/playerpoints.service';
 
 @Injectable()
 export class AuthService {
+  PLACEHOLDER_SEASON = 'CJbPw8e8U9JkpIWlDnnl';
+
   user$: Observable<User>;
   isLoggingIn = false;
 
@@ -31,7 +34,8 @@ export class AuthService {
     private router: Router,
     private teamsService: TeamsService,
     private notify: NotifyService,
-    private userService: UserService
+    private userService: UserService,
+    private playerPointsService: PlayerPointsService
   ) {
     this.user$ = this.afAuth.authState.pipe(
       switchMap(user => {
@@ -48,12 +52,18 @@ export class AuthService {
     const user$ = this.userService.getUser(uid);
     const isAdmin$ = this.adminService.isAdmin(uid);
     const membership$ = this.teamsService.getMembership(uid);
+    const totalExp$ = this.playerPointsService.getTotalExp(uid);
+    const seasonExp$ = this.playerPointsService.getSeasonExp(uid, this.PLACEHOLDER_SEASON); // till we get seasonService handled
+    seasonExp$.subscribe(exp => console.log(exp));
+    totalExp$.subscribe(exp => console.log(exp));
 
-    return combineLatest(user$, isAdmin$, membership$).pipe(
-      map(([user, isAdmin, membership]) => ({
+    return combineLatest(user$, isAdmin$, membership$, totalExp$, seasonExp$).pipe(
+      map(([user, isAdmin, membership, totalExp, seasonExp]) => ({
         ...user,
         isAdmin,
-        membership
+        membership,
+        totalExp,
+        seasonExp
       }))
     );
   }

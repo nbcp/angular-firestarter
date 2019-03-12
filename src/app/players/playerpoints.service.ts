@@ -16,9 +16,9 @@ export class PlayerPointsService {
 
   getPlayerPoint(uid: string, seasonId: string): Observable<PlayerPoint> {
     const playerPoint = this.afs.collection('playerPoints', ref =>
-      ref.where('seasonId', '==', seasonId));
+      ref.where('seasonId', '==', seasonId).where('playerId', '==', uid));
 
-    return playerPoint.doc<PlayerPoint>(uid).valueChanges();
+    return playerPoint.doc<PlayerPoint>(seasonId + uid).valueChanges();
   }
 
   getTotalPlayerPoints(uid: string): Observable<PlayerPoint[]> {
@@ -30,8 +30,8 @@ export class PlayerPointsService {
     );
   }
 
-  getSeasonExp(uid: string, seasonId: string) {
-    this.getPlayerPoint(uid, seasonId).pipe(
+  getSeasonExp(uid: string, seasonId: string): Observable<number> {
+    return this.getPlayerPoint(uid, seasonId).pipe(
       map((playerPoint: PlayerPoint) => playerPoint ? playerPoint.totalPoints : null)
     );
   }
