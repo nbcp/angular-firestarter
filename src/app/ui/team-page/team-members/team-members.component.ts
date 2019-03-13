@@ -1,7 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Observable } from 'rxjs';
+import { combineLatest, Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { TeamsService } from 'src/app/teams/teams.service';
+import { PlayerPointsService } from 'src/app/players/playerpoints.service';
 
 @Component({
   selector: 'team-members',
@@ -10,13 +12,18 @@ import { TeamsService } from 'src/app/teams/teams.service';
 })
 export class TeamMembersComponent implements OnInit {
 
+  PLACEHOLDER_SEASON = 'CJbPw8e8U9JkpIWlDnnl';
+
   @Input() currentUser: User;
   teamMembers$: Observable<Membership[]>;
+  members$: Observable<Membership>[];
   title: string;
 
-  readonly memberColumns = ['displayName', 'exp', 'careerRank', 'seasonRank', 'kickButton'];
+  readonly memberColumns = ['displayName', 'exp', 'seasonRank', 'kickButton'];
 
-  constructor(private teamsService: TeamsService) {}
+  constructor(private teamsService: TeamsService,
+    private playerPointsService: PlayerPointsService
+    ) {}
 
   ngOnInit() {
     if (this.currentUser && this.currentUser.membership) {
@@ -26,6 +33,10 @@ export class TeamMembersComponent implements OnInit {
 
       this.teamMembers$ =
         this.teamsService.getTeamMembers(this.currentUser.membership.teamId);
+
+     this.teamMembers$.subscribe(members => {
+        this.members$ = members.map(this.getMemberInfo.bind(this));
+      });
     }
   }
 
@@ -40,4 +51,16 @@ export class TeamMembersComponent implements OnInit {
   removeTeamMember(uid) {
     this.teamsService.removeTeamMember(uid);
   }
+
+  private getMemberInfo(member: Membership): Observable<Membership> {
+    const uid = member.uid;
+    const membership$ = this.teamsService.getMembership(uid);
+    const totalExp$ = this.playerPointsService.getTotalExp(uid);
+    const seasonExp$ = this.playerPointsService.getSeasonExp(uid, this.PLACEHOLDER_SEASON); // till we get seasonService handled
+
+    return combineLatest(membership$, totalExp$, seasonExp$).pipe(
+      map(([membership, totalExp, seasonExp]) => ({ ...membership, totalExp, seasonExp }))
+    );
+  }
+
 }

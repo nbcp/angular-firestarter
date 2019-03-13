@@ -41,6 +41,7 @@ import { TeamPageComponent } from './team-page/team-page.component';
 import { TeamApplicationsComponent } from './team-page/team-applications/team-applications.component';
 import { TeamMembersComponent } from './team-page/team-members/team-members.component';
 import { NicknamePipe } from './nickname.pipe';
+import { SeasonRankPipe } from '../helpers/seasonRank.pipe';
 
 @NgModule({
   imports: [
@@ -84,6 +85,7 @@ import { NicknamePipe } from './nickname.pipe';
     TeamApplicationsComponent,
     TeamMembersComponent,
     NicknamePipe,
+    SeasonRankPipe
   ],
   entryComponents: [
     QuestApprovalDialogComponent,
