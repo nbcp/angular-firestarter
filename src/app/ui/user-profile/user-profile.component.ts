@@ -61,11 +61,10 @@ export class UserProfileComponent implements OnInit {
     const error = 'Sorry, You are not allowed to view this user\'s profile';
     const user$ = this.userService.getUser(playerId);
     const membership$ = this.teamsService.getMembership(playerId);
-    const totalExp$ = this.playerPointsService.getTotalExp(playerId);
     const seasonExp$ = this.playerPointsService.getSeasonExp(playerId, this.PLACEHOLDER_SEASON); // till we get seasonService handled
 
-    return combineLatest(user$, membership$, totalExp$, seasonExp$).pipe(
-      map(([user, membership, totalExp, seasonExp]) => ({ ...user, membership, totalExp, seasonExp })),
+    return combineLatest(user$, membership$, seasonExp$).pipe(
+      map(([user, membership, seasonExp]) => ({ ...user, membership, seasonExp })),
         catchError((err) => {
           console.log(err);
           return of({ error });
