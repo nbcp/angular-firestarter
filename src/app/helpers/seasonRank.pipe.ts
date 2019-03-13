@@ -18,5 +18,4 @@ export class SeasonRankPipe implements PipeTransform {
           return 5;
         }
       }
-
 }
