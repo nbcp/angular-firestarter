@@ -4,6 +4,8 @@ import { map } from 'rxjs/operators';
 
 import { TeamsService } from 'src/app/teams/teams.service';
 import { PlayerPointsService } from '../../player-quest/player-points.service';
+import { MatDialog } from '@angular/material';
+import { KickDialogComponent } from '../kick-dialog/kick-dialog.component';
 
 @Component({
   selector: 'team-members',
@@ -21,7 +23,8 @@ export class TeamMembersComponent implements OnInit {
 
   readonly memberColumns = ['displayName', 'exp', 'seasonRank', 'kickButton'];
 
-  constructor(
+
+  constructor(private dialog: MatDialog,
     private teamsService: TeamsService,
     private playerPointsService: PlayerPointsService
   ) {}
@@ -49,7 +52,15 @@ export class TeamMembersComponent implements OnInit {
   }
 
   removeTeamMember(uid) {
-    this.teamsService.removeTeamMember(uid);
+    const kickMemberDialog = this.dialog.open(KickDialogComponent, {
+      data: { }
+    });
+
+    kickMemberDialog.afterClosed().subscribe(result => {
+      if (result) {
+        this.teamsService.removeTeamMember(uid);
+      }
+    });
   }
 
   private getMemberInfo(member: Membership): Observable<Membership> {
