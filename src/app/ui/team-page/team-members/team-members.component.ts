@@ -16,7 +16,7 @@ export class TeamMembersComponent implements OnInit {
 
   @Input() currentUser: User;
   teamMembers$: Observable<Membership[]>;
-  members$: Observable<Membership>[];
+  members$: Observable<Membership[]>;
   title: string;
 
   readonly memberColumns = ['displayName', 'exp', 'seasonRank', 'kickButton'];
@@ -34,13 +34,12 @@ export class TeamMembersComponent implements OnInit {
       this.teamMembers$ =
         this.teamsService.getTeamMembers(this.currentUser.membership.teamId);
 
-     this.teamMembers$.subscribe(members => {
-        this.members$ = members.map(this.getMemberInfo.bind(this));
-      });
+      const teamId = this.currentUser.membership.teamId;
+      this.members$ = this.mergeMemberInfo(teamId);
     }
   }
 
-  addTeamMember(uid) {
+  addTeamMember(uid: string) {
     this.teamsService.addToTeam(uid);
   }
 
@@ -61,6 +60,32 @@ export class TeamMembersComponent implements OnInit {
     return combineLatest(membership$, totalExp$, seasonExp$).pipe(
       map(([membership, totalExp, seasonExp]) => ({ ...membership, totalExp, seasonExp }))
     );
+  }
+
+  private mergeMemberInfo(teamId: string): Observable<Membership[]> {
+    const teamMembers$ = this.teamsService.getTeamMembers(teamId);
+    const teamPoints$ = this.playerPointsService.getTeamPoints(teamId, this.PLACEHOLDER_SEASON);
+
+    return combineLatest(teamMembers$, teamPoints$).pipe(
+      map(([teamMembers, teamPoints]) => {
+        return this.joinMemberPoints(teamMembers, teamPoints);
+      })
+    );
+  }
+
+  private joinMemberPoints(members: Membership[], playerPoints: PlayerPoint[]): Membership[] {
+
+    members.forEach( member => {
+      const match = playerPoints.find( (playerPoint) => {
+        return playerPoint.playerId === member.uid;
+      });
+
+      if (match) {
+        member.seasonExp = match.totalPoints;
+      }
+    });
+
+    return members;
   }
 
 }

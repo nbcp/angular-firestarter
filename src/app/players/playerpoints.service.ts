@@ -30,6 +30,15 @@ export class PlayerPointsService {
     );
   }
 
+  getTeamPoints(teamId: string, seasonId: string): Observable<PlayerPoint[]> {
+    const playerPoints: AngularFirestoreCollection<PlayerPoint> = this.afs.collection('playerPoints', ref =>
+      ref.where('teamId', '==', teamId));
+
+      return playerPoints.snapshotChanges().pipe(
+        map((playerPts) => playerPts.map(item => item.payload.doc.data()))
+      );
+  }
+
   getSeasonExp(uid: string, seasonId: string): Observable<number> {
     return this.getPlayerPoint(uid, seasonId).pipe(
       map((playerPoint: PlayerPoint) => playerPoint ? playerPoint.totalPoints : null)
