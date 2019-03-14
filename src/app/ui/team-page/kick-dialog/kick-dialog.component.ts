@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'kick-dialog',
@@ -8,9 +9,14 @@ import { MatDialogRef } from '@angular/material';
 })
 export class KickDialogComponent implements OnInit {
 
-  constructor(private dialogRef: MatDialogRef<KickDialogComponent>) { }
+  public name: string;
+
+  constructor(@Inject(MAT_DIALOG_DATA) private data: { displayName: string },
+  private dialogRef: MatDialogRef<KickDialogComponent>) {}
 
   ngOnInit() {
+    console.log(this.data.displayName);
+    this.name = this.data.displayName;
   }
 
 

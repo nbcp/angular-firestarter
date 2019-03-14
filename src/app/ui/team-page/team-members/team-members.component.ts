@@ -51,9 +51,9 @@ export class TeamMembersComponent implements OnInit {
     return this.currentUser.membership.isLead && (uid !== this.currentUser.uid);
   }
 
-  removeTeamMember(uid) {
+  removeTeamMember(uid: string, displayName: string) {
     const kickMemberDialog = this.dialog.open(KickDialogComponent, {
-      data: { }
+      data: { displayName }
     });
 
     kickMemberDialog.afterClosed().subscribe(result => {
