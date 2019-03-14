@@ -63,17 +63,6 @@ export class TeamMembersComponent implements OnInit {
     });
   }
 
-  private getMemberInfo(member: Membership): Observable<Membership> {
-    const uid = member.uid;
-    const membership$ = this.teamsService.getMembership(uid);
-    const totalExp$ = this.playerPointsService.getTotalExp(uid);
-    const seasonExp$ = this.playerPointsService.getSeasonExp(uid, this.PLACEHOLDER_SEASON); // till we get seasonService handled
-
-    return combineLatest(membership$, totalExp$, seasonExp$).pipe(
-      map(([membership, totalExp, seasonExp]) => ({ ...membership, totalExp, seasonExp }))
-    );
-  }
-
   private mergeMemberInfo(teamId: string): Observable<Membership[]> {
     const teamMembers$ = this.teamsService.getTeamMembers(teamId);
     const teamPoints$ = this.playerPointsService.getTeamPoints(teamId, this.PLACEHOLDER_SEASON);
