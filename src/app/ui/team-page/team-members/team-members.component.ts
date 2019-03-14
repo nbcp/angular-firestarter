@@ -3,7 +3,7 @@ import { combineLatest, Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { TeamsService } from 'src/app/teams/teams.service';
-import { PlayerPointsService } from 'src/app/players/playerpoints.service';
+import { PlayerPointsService } from '../../player-quest/player-points.service';
 
 @Component({
   selector: 'team-members',
@@ -21,9 +21,10 @@ export class TeamMembersComponent implements OnInit {
 
   readonly memberColumns = ['displayName', 'exp', 'seasonRank', 'kickButton'];
 
-  constructor(private teamsService: TeamsService,
+  constructor(
+    private teamsService: TeamsService,
     private playerPointsService: PlayerPointsService
-    ) {}
+  ) {}
 
   ngOnInit() {
     if (this.currentUser && this.currentUser.membership) {
@@ -73,7 +74,7 @@ export class TeamMembersComponent implements OnInit {
     );
   }
 
-  private joinMemberPoints(members: Membership[], playerPoints: PlayerPoint[]): Membership[] {
+  private joinMemberPoints(members: Membership[], playerPoints: PlayerPoints[]): Membership[] {
 
     members.forEach( member => {
       const match = playerPoints.find( (playerPoint) => {

@@ -30,8 +30,6 @@ import { NotesModule } from './notes/notes.module';
 
 import { functions } from 'firebase';
 import { TeamsModule } from './teams/teams.module';
-import { PlayersModule } from './players/players.module';
-import { SeasonRankPipe } from './helpers/seasonRank.pipe';
 
 // IMPORTANT
 // Add your own project credentials to environments/*.ts
@@ -57,7 +55,6 @@ import { SeasonRankPipe } from './helpers/seasonRank.pipe';
     MatTooltipModule,
     MsalModule.forRoot({ clientID: '9fc78166-b1bb-4cc6-bb92-a2425705410a' }),
     NotesModule,
-    PlayersModule,
     TeamsModule,
     UiModule,
     UploadsModule,

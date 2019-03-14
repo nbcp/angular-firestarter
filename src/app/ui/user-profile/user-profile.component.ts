@@ -13,7 +13,7 @@ import { TeamsService } from 'src/app/teams/teams.service';
 import { environment } from 'src/environments/environment';
 import { AddQuestDialogComponent } from '../dialog/add-quest-dialog/add-quest-dialog.component';
 import { PlayerQuestService } from '../player-quest/player-quest.service';
-import { PlayerPointsService } from 'src/app/players/playerpoints.service';
+import { PlayerPointsService } from '../player-quest/player-points.service';
 
 @Component({
   selector: 'user-profile',

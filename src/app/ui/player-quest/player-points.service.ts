@@ -8,21 +8,21 @@ import { Observable } from 'rxjs';
 })
 export class PlayerPointsService {
 
-  playerPointsCollection: AngularFirestoreCollection<PlayerPoint>;
+  playerPointsCollection: AngularFirestoreCollection<PlayerPoints>;
 
   constructor(private afs: AngularFirestore) {
     this.playerPointsCollection = this.afs.collection('playerPoints');
   }
 
-  getPlayerPoint(uid: string, seasonId: string): Observable<PlayerPoint> {
+  getPlayerPoint(uid: string, seasonId: string): Observable<PlayerPoints> {
     const playerPoint = this.afs.collection('playerPoints', ref =>
       ref.where('seasonId', '==', seasonId).where('playerId', '==', uid));
 
-    return playerPoint.doc<PlayerPoint>(seasonId + uid).valueChanges();
+    return playerPoint.doc<PlayerPoints>(seasonId + uid).valueChanges();
   }
 
-  getTotalPlayerPoints(uid: string): Observable<PlayerPoint[]> {
-    const playerPoints: AngularFirestoreCollection<PlayerPoint> = this.afs.collection('playerPoints', ref =>
+  getTotalPlayerPoints(uid: string): Observable<PlayerPoints[]> {
+    const playerPoints: AngularFirestoreCollection<PlayerPoints> = this.afs.collection('playerPoints', ref =>
       ref.where('playerId', '==', uid));
 
     return playerPoints.snapshotChanges().pipe(
@@ -30,8 +30,8 @@ export class PlayerPointsService {
     );
   }
 
-  getTeamPoints(teamId: string, seasonId: string): Observable<PlayerPoint[]> {
-    const playerPoints: AngularFirestoreCollection<PlayerPoint> = this.afs.collection('playerPoints', ref =>
+  getTeamPoints(teamId: string, seasonId: string): Observable<PlayerPoints[]> {
+    const playerPoints: AngularFirestoreCollection<PlayerPoints> = this.afs.collection('playerPoints', ref =>
       ref.where('teamId', '==', teamId));
 
       return playerPoints.snapshotChanges().pipe(
@@ -41,7 +41,7 @@ export class PlayerPointsService {
 
   getSeasonExp(uid: string, seasonId: string): Observable<number> {
     return this.getPlayerPoint(uid, seasonId).pipe(
-      map((playerPoint: PlayerPoint) => playerPoint ? playerPoint.totalPoints : null)
+      map((playerPoint: PlayerPoints) => playerPoint ? playerPoint.totalPoints : 0)
     );
   }
 

@@ -17,7 +17,7 @@ import { EmailService } from './email.service';
 import { NotifyService } from './notify.service';
 import { UserService } from './user.service';
 import { TeamsService } from '../teams/teams.service';
-import { PlayerPointsService } from '../players/playerpoints.service';
+import { PlayerPointsService } from '../ui/player-quest/player-points.service';
 
 @Injectable()
 export class AuthService {
@@ -64,8 +64,6 @@ export class AuthService {
     const membership$ = this.teams.getMembership(uid);
     const totalExp$ = this.playerPointsService.getTotalExp(uid);
     const seasonExp$ = this.playerPointsService.getSeasonExp(uid, this.PLACEHOLDER_SEASON);
-    seasonExp$.subscribe(exp => console.log(exp));
-    totalExp$.subscribe(exp => console.log(exp));
 
     return combineLatest(user$, isAdmin$, membership$, totalExp$, seasonExp$).pipe(
       map(([user, isAdmin, membership, totalExp, seasonExp]) => {
