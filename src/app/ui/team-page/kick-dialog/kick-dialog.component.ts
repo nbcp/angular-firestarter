@@ -15,12 +15,7 @@ export class KickDialogComponent implements OnInit {
   private dialogRef: MatDialogRef<KickDialogComponent>) {}
 
   ngOnInit() {
-    console.log(this.data.displayName);
     this.name = this.data.displayName;
   }
 
-
-  confirmKick() {
-    this.dialogRef.close(true);
-  }
 }
