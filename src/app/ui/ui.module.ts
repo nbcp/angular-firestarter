@@ -41,6 +41,7 @@ import { TeamMembersComponent } from './team-page/team-members/team-members.comp
 import { FirestoreDatePipe } from './firestore-date.pipe';
 import { NicknamePipe } from './nickname.pipe';
 import { SeasonRankPipe } from './seasonRank.pipe';
+import { RejectConfirmationComponent } from './members-quest-approval/reject-confirmation/reject-confirmation.component';
 
 @NgModule({
   imports: [
@@ -84,10 +85,12 @@ import { SeasonRankPipe } from './seasonRank.pipe';
     TeamApplicationsComponent,
     TeamMembersComponent,
     NicknamePipe,
-    SeasonRankPipe
+    SeasonRankPipe,
+    RejectConfirmationComponent
   ],
   entryComponents: [
     QuestApprovalDialogComponent,
+    RejectConfirmationComponent,
     SubmitQuestDialogComponent
   ],
   exports: [

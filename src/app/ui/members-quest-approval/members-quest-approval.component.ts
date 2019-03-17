@@ -8,6 +8,7 @@ import { NotifyService } from 'src/app/core/notify.service';
 import { SeasonService } from 'src/app/core/season.service';
 import { PlayerQuestService } from '../player-quest/player-quest.service';
 import { QuestApprovalDialogComponent } from './quest-approval-dialog.component';
+import { RejectConfirmationComponent } from './reject-confirmation/reject-confirmation.component';
 
 @Component({
   selector: 'members-quest-approval',
@@ -53,7 +54,12 @@ export class MembersQuestApprovalComponent implements OnInit {
         }
 
         if (result === 'rejected') {
-          return this.playerQuest.rejectQuest(quest);
+          const rejectionDialogRef = this.dialog.open(RejectConfirmationComponent);
+
+          dialogRef.afterClosed().pipe(
+
+          );
+          // return this.playerQuest.rejectQuest(quest);
         }
 
         return EMPTY;
