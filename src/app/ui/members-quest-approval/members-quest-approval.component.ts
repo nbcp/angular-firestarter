@@ -95,7 +95,7 @@ export class MembersQuestApprovalComponent implements OnInit {
     const dashboardUrl = `${environment.firebase.authDomain}`;
 
     return `
-      Congratulations! You have been awarded ${xp} XP for completing your ${requiredStr} [${quest.category}] quest.<br/>
+      Congratulations! You have been awarded ${xp} XP for completing your ${requiredStr} [${quest.category}] ${quest.questName} quest.<br/>
       <br/>
       Visit the <a href="${dashboardUrl}"">Leaderboard</a> to see your current ranking!<br/>
       <br/>
