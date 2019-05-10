@@ -1,11 +1,12 @@
 export const environment = {
   production: true,
   firebase: {
-    apiKey: 'AIzaSyCiQOyWXs6bN_J_Cv3v-MoRi2Nee7VlKtI',
-    authDomain: 'leaderboard-79b77.firebaseapp.com',
-    databaseURL: 'https://leaderboard-79b77.firebaseio.com',
-    projectId: 'leaderboard-79b77',
-    storageBucket: 'leaderboard-79b77.appspot.com',
-    messagingSenderId: '519592004308'
+    apiKey: 'AIzaSyDIlsD8A4llLJY2fZbX5bkDbFR8xiHEdT0',
+    authDomain: 'leaderboard-test-2f001.firebaseapp.com',
+    databaseURL: 'https://leaderboard-test-2f001.firebaseio.com',
+    projectId: 'leaderboard-test-2f001',
+    storageBucket: 'leaderboard-test-2f001.appspot.com',
+    messagingSenderId: '792501954089',
+    appId: '1:792501954089:web:64be2bc53afea001'
   }
 };

@@ -21,7 +21,7 @@ import { PlayerPointsService } from '../ui/player-quest/player-points.service';
 
 @Injectable()
 export class AuthService {
-  PLACEHOLDER_SEASON = 'CJbPw8e8U9JkpIWlDnnl';
+  PLACEHOLDER_SEASON = 'HGsH8C53kWPvCFvbQLyp';
 
   user$: Observable<User>;
   isLoggingIn = false;

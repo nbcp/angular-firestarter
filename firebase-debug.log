@@ -1,0 +1,45 @@
+[debug] [2019-05-10T09:28:00.866Z] ----------------------------------------------------------------------
+[debug] [2019-05-10T09:28:00.878Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\fjgallard\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2019-05-10T09:28:00.879Z] CLI Version:   6.9.1
+[debug] [2019-05-10T09:28:00.879Z] Platform:      win32
+[debug] [2019-05-10T09:28:00.879Z] Node Version:  v10.15.1
+[debug] [2019-05-10T09:28:00.881Z] Time:          Fri May 10 2019 17:28:00 GMT+0800 (China Standard Time)
+[debug] [2019-05-10T09:28:00.882Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-05-10T09:28:00.899Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-05-10T09:28:00.900Z] > authorizing via signed-in user
+[debug] [2019-05-10T09:28:00.900Z] [iam] checking project leaderboard-79b77 for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasedatabase.instances.update","firebasehosting.sites.update","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]
+[debug] [2019-05-10T09:28:00.903Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/leaderboard-79b77:testIamPermissions  
+
+[debug] [2019-05-10T09:28:02.520Z] <<< HTTP RESPONSE 200
+[debug] [2019-05-10T09:28:02.524Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/leaderboard-79b77  
+ 
+[debug] [2019-05-10T09:28:03.175Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'leaderboard-79b77'...
+[info] 
+[info] i  deploying database, storage, firestore, functions, hosting
+[info] Running command: npm --prefix "$RESOURCE_DIR" run lint
+[info] Running command: npm --prefix "$RESOURCE_DIR" run build
+[info] +  functions: Finished running predeploy script.
+[info] i  database: checking rules syntax...
+[debug] [2019-05-10T09:28:18.285Z] >>> HTTP REQUEST PUT https://leaderboard-79b77.firebaseio.com/.settings/rules.json?dryRun=true  
+ {
+  "rules": {
+    ".read": "auth != null",
+    ".write": "auth != null"
+  }
+}
+[debug] [2019-05-10T09:28:19.530Z] <<< HTTP RESPONSE 200
+[info] +  database: rules syntax for database leaderboard-79b77 is valid
+[debug] [2019-05-10T09:28:19.533Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/leaderboard-79b77  
+ 
+[debug] [2019-05-10T09:28:21.212Z] <<< HTTP RESPONSE 200
+[info] i  storage: checking storage.rules for compilation errors...
+[debug] [2019-05-10T09:28:21.214Z] >>> HTTP REQUEST POST https://firebaserules.googleapis.com/v1/projects/leaderboard-79b77:test  
+
+[debug] [2019-05-10T09:28:23.034Z] <<< HTTP RESPONSE 200
+[info] +  storage: rules file storage.rules compiled successfully
+[info] i  firestore: checking firestore.rules for compilation errors...
+[debug] [2019-05-10T09:28:23.043Z] >>> HTTP REQUEST POST https://firebaserules.googleapis.com/v1/projects/leaderboard-79b77:test  
+
