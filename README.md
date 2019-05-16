@@ -1,5 +1,7 @@
 [![Build Status](https://travis-ci.org/nbcp/firestarter-leaderboard.svg?branch=master)](https://travis-ci.org/nbcp/firestarter-leaderboard)
 
+**Moved to https://github.com/nbcp/leaderboard/**
+
 # Leaderboard 
 
 Forked from [FireStarter](https://github.com/codediodeio/angular-firestarter), this Angular App provides a simple interface to rank users based on points achieved from finished tasks.
